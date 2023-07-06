@@ -1,3 +1,7 @@
 export default function Heading() {
-  return <>Heading</>;
+  return (
+    <>
+      <h1>Heading</h1>
+    </>
+  );
 }
