@@ -40,3 +40,11 @@ it("renders state", () => {
   // Then
   expect(container.querySelector("#state")).toBeTruthy();
 });
+
+it("renders zip", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#zip")).toBeTruthy();
+});
