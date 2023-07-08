@@ -33,7 +33,7 @@ export default function Heading() {
           </label>
           <input type="text" className="form-control" id="zip" />
         </div>
-        <div className="col-md-3">
+        <div className="col-md-6">
           <label htmlFor="phone" className="form-label">
             Phone
           </label>
