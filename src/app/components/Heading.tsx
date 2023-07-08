@@ -45,6 +45,16 @@ export default function Heading() {
           </label>
           <input type="email" className="form-control" id="email" />
         </div>
+        <div className="col-6">
+          <button id="back" type="button" className="btn btn-dark">
+            Back
+          </button>
+        </div>
+        <div className="col-6 d-md-flex justify-content-md-end">
+          <button id="next" type="button" className="btn btn-dark">
+            Next
+          </button>
+        </div>
       </form>
     </div>
   );

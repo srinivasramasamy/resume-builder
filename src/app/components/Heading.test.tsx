@@ -64,3 +64,19 @@ it("renders email", () => {
   // Then
   expect(container.querySelector("#email")).toBeTruthy();
 });
+
+it("renders back", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#back")).toBeTruthy();
+});
+
+it("renders next", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#next")).toBeTruthy();
+});
