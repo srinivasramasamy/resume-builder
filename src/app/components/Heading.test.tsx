@@ -48,3 +48,11 @@ it("renders zip", () => {
   // Then
   expect(container.querySelector("#zip")).toBeTruthy();
 });
+
+it("renders phone", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#phone")).toBeTruthy();
+});
