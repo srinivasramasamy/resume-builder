@@ -16,3 +16,11 @@ it("renders first name", () => {
   // Then
   expect(container.querySelector("#firstName")).toBeTruthy();
 });
+
+it("renders last name", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#lastName")).toBeTruthy();
+});
