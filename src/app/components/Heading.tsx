@@ -21,6 +21,12 @@ export default function Heading() {
           </label>
           <input type="text" className="form-control" id="city" />
         </div>
+        <div className="col-md-3">
+          <label htmlFor="state" className="form-label">
+            State
+          </label>
+          <input type="text" className="form-control" id="state" />
+        </div>
       </form>
     </div>
   );

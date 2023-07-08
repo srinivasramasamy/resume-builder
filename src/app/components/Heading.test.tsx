@@ -32,3 +32,11 @@ it("renders city", () => {
   // Then
   expect(container.querySelector("#city")).toBeTruthy();
 });
+
+it("renders state", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#state")).toBeTruthy();
+});
