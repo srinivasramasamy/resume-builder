@@ -56,3 +56,11 @@ it("renders phone", () => {
   // Then
   expect(container.querySelector("#phone")).toBeTruthy();
 });
+
+it("renders email", () => {
+  // Given
+  const { container } = render(<Heading />);
+
+  // Then
+  expect(container.querySelector("#email")).toBeTruthy();
+});

@@ -39,6 +39,12 @@ export default function Heading() {
           </label>
           <input type="number" className="form-control" id="phone" />
         </div>
+        <div className="col-md-6">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input type="email" className="form-control" id="email" />
+        </div>
       </form>
     </div>
   );
