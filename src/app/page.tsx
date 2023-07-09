@@ -1,3 +1,4 @@
+"use client";
 import "bootstrap/dist/css/bootstrap.css";
 import Resume from "./components/Resume";
 
