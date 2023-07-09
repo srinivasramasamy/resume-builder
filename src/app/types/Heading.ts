@@ -1,4 +1,6 @@
-class Heading {
+import Name from "./Name";
+
+export default class Heading {
   name: Name;
   phoneNumber: number;
   email: string;
