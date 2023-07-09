@@ -3,12 +3,16 @@ import Resume from "../types/Resume";
 
 export default function Heading() {
   const resume: Resume = JSON.parse(localStorage.getItem("resume")!);
-  const [firstName, setFirstName] = useState<string>(
-    resume?.heading?.name?.firstName
-  );
-  const [lastName, setLastName] = useState<string>(
-    resume?.heading?.name?.lastName
-  );
+  const {
+    heading: {
+      name: {
+        firstName: firstNameFromLocal = "",
+        lastName: lastNameFromLocal = "",
+      } = {},
+    } = {},
+  } = resume || {};
+  const [firstName, setFirstName] = useState<string>(firstNameFromLocal);
+  const [lastName, setLastName] = useState<string>(lastNameFromLocal);
 
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
