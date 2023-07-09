@@ -2,7 +2,7 @@ import Name from "./Name";
 
 export default class Heading {
   name: Name;
-  phoneNumber: number;
+  phoneNumber: number | null;
   email: string;
   city: string;
   state: string;
@@ -10,13 +10,13 @@ export default class Heading {
   links: Link[];
 
   constructor(
-    name: Name,
-    phoneNumber: number,
-    email: string,
-    city: string,
-    state: string,
-    zip: string,
-    links: Link[]
+    name: Name = new Name(),
+    phoneNumber: number | null = null,
+    email: string = "",
+    city: string = "",
+    state: string = "",
+    zip: string = "",
+    links: Link[] = []
   ) {
     this.name = name;
     this.phoneNumber = phoneNumber;
