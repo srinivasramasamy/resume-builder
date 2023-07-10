@@ -4,7 +4,7 @@ import Name from "../types/Name";
 import Resume from "../types/Resume";
 import Heading from "./Heading";
 
-describe("Heading", () => {
+describe("Heading component", () => {
   it("renders heading", () => {
     // Given
     const { container } = render(<Heading />);
