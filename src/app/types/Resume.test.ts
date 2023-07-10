@@ -1,4 +1,4 @@
-import Heading from "./Heading";
+import { Heading } from "./Heading";
 import Resume from "./Resume";
 
 describe("Resume", () => {

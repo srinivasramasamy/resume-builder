@@ -1,4 +1,4 @@
-import Heading from "./Heading";
+import { Heading } from "./Heading";
 
 describe("Heading", () => {
   it("should initialize with default values", () => {

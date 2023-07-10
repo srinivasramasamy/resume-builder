@@ -1,6 +1,6 @@
 import Name from "./Name";
 
-export default class Heading {
+export class Heading {
   name: Name;
   phoneNumber: number | null;
   email: string;
