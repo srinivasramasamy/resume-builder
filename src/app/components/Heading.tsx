@@ -1,26 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Resume from "../types/Resume";
+import { getLocal } from "../util/Utility";
+
+const useLocalStorage = (): [
+  string,
+  (firstName: string) => void,
+  string,
+  (lastName: string) => void
+] => {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  useEffect(() => {
+    const resume: Resume = getLocalResume();
+    const {
+      heading: {
+        name: {
+          firstName: firstNameFromLocal = "",
+          lastName: lastNameFromLocal = "",
+        } = {},
+      } = {},
+    } = resume || {};
+
+    setFirstName(firstNameFromLocal);
+    setLastName(lastNameFromLocal);
+  }, []);
+
+  return [firstName, setFirstName, lastName, setLastName];
+};
+
+const getLocalResume = (): Resume => {
+  return JSON.parse(getLocal("resume")!);
+};
 
 export default function Heading() {
-  const resume: Resume = JSON.parse(localStorage.getItem("resume")!);
-  const {
-    heading: {
-      name: {
-        firstName: firstNameFromLocal = "",
-        lastName: lastNameFromLocal = "",
-      } = {},
-    } = {},
-  } = resume || {};
-  const [firstName, setFirstName] = useState<string>(firstNameFromLocal);
-  const [lastName, setLastName] = useState<string>(lastNameFromLocal);
-
+  const [firstName, setFirstName, lastName, setLastName] = useLocalStorage();
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const resume = getLocalResume();
     setFirstName(e.target.value);
     resume.heading.name.firstName = e.target.value;
     localStorage.setItem("resume", JSON.stringify(resume));
   };
 
   const onLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const resume = getLocalResume();
     setLastName(e.target.value);
     resume.heading.name.lastName = e.target.value;
     localStorage.setItem("resume", JSON.stringify(resume));
