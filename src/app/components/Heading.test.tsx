@@ -101,4 +101,21 @@ describe("Heading", () => {
       firstName
     );
   });
+
+  it("renders last name form local storage", () => {
+    // Given
+    const lasstName: string = "Last Name";
+    const heading: HeadingType = new HeadingType(new Name("", lasstName));
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#lastName")?.getAttribute("value")).toBe(
+      lasstName
+    );
+  });
 });
