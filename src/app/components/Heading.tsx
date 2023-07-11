@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Resume from "../types/Resume";
 import { getLocal } from "../util/Utility";
 
-const useLocalStorage = (): [
+const useLocalStorageToIntialize = (): [
   string,
   (firstName: string) => void,
   string,
@@ -33,7 +33,9 @@ const getLocalResume = (): Resume => {
 };
 
 export default function Heading() {
-  const [firstName, setFirstName, lastName, setLastName] = useLocalStorage();
+  const [firstName, setFirstName, lastName, setLastName] =
+    useLocalStorageToIntialize();
+
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const resume = getLocalResume();
     setFirstName(e.target.value);
