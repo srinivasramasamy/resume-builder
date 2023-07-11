@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Resume from "../types/Resume";
-import { getLocal } from "../util/Utility";
+import { getLocal, setLocal } from "../util/Utility";
 
 const useLocalStorageToIntialize = (): [
   string,
@@ -42,14 +42,14 @@ const useOnHeadingChange = (): [
     const resume = getLocalResume();
     setFirstName(e.target.value);
     resume.heading.name.firstName = e.target.value;
-    localStorage.setItem("resume", JSON.stringify(resume));
+    setLocalResume(resume);
   };
 
   const onLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const resume = getLocalResume();
     setLastName(e.target.value);
     resume.heading.name.lastName = e.target.value;
-    localStorage.setItem("resume", JSON.stringify(resume));
+    setLocalResume(resume);
   };
 
   const onNext = () => {};
@@ -59,6 +59,10 @@ const useOnHeadingChange = (): [
 
 const getLocalResume = (): Resume => {
   return JSON.parse(getLocal("resume")!);
+};
+
+const setLocalResume = (resume: Resume) => {
+  setLocal("resume", JSON.stringify(resume));
 };
 
 export default function Heading() {
