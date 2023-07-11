@@ -2,59 +2,16 @@ import { useEffect, useState } from "react";
 import Resume from "../types/Resume";
 import { getLocal, setLocal } from "../util/Utility";
 
-const useLocalStorageToInitialize = (): [
-  string,
-  (firstName: string) => void,
-  string,
-  (lastName: string) => void
-] => {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+const useResume = (): [Resume, (resume: Resume) => void] => {
+  const [resume, setResume] = useState<Resume>(new Resume());
   useEffect(() => {
-    const resume: Resume = getLocalResume();
-    const {
-      heading: {
-        name: {
-          firstName: firstNameFromLocal = "",
-          lastName: lastNameFromLocal = "",
-        } = {},
-      } = {},
-    } = resume || {};
-
-    setFirstName(firstNameFromLocal);
-    setLastName(lastNameFromLocal);
+    setResume(getLocalResume());
   }, []);
-
-  return [firstName, setFirstName, lastName, setLastName];
-};
-
-const useOnHeadingChange = (): [
-  string,
-  (e: React.ChangeEvent<HTMLInputElement>) => void,
-  string,
-  (e: React.ChangeEvent<HTMLInputElement>) => void,
-  () => void
-] => {
-  const [firstName, setFirstName, lastName, setLastName] =
-    useLocalStorageToInitialize();
-
-  const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const resume = getLocalResume();
-    setFirstName(e.target.value);
-    resume.heading.name.firstName = e.target.value;
+  const updateStateAndLocalResume = (resume: Resume) => {
+    setResume(resume);
     setLocalResume(resume);
   };
-
-  const onLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const resume = getLocalResume();
-    setLastName(e.target.value);
-    resume.heading.name.lastName = e.target.value;
-    setLocalResume(resume);
-  };
-
-  const onNext = () => {};
-
-  return [firstName, onFirstNameChange, lastName, onLastNameChange, onNext];
+  return [resume, updateStateAndLocalResume];
 };
 
 const getLocalResume = (): Resume => {
@@ -66,8 +23,31 @@ const setLocalResume = (resume: Resume) => {
 };
 
 export default function Heading() {
-  const [firstName, onFirstNameChange, lastName, onLastNameChange, onNext] =
-    useOnHeadingChange();
+  const [resume, updateStateAndLocalResume] = useResume();
+
+  const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        name: { ...resume?.heading.name, firstName: e.target.value },
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
+  const onLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        name: { ...resume?.heading.name, lastName: e.target.value },
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
 
   return (
     <div className="container">
@@ -82,7 +62,7 @@ export default function Heading() {
             className="form-control"
             id="firstName"
             onChange={onFirstNameChange}
-            value={firstName}
+            value={resume?.heading.name.firstName}
           />
         </div>
         <div className="col-md-6">
@@ -94,7 +74,7 @@ export default function Heading() {
             className="form-control"
             id="lastName"
             onChange={onLastNameChange}
-            value={lastName}
+            value={resume?.heading.name.lastName}
           />
         </div>
         <div className="col-md-6">
@@ -137,7 +117,7 @@ export default function Heading() {
             id="next"
             type="button"
             className="btn btn-dark"
-            onClick={onNext}
+            onClick={() => {}}
           >
             Next
           </button>

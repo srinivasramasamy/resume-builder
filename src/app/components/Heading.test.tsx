@@ -5,6 +5,11 @@ import Resume from "../types/Resume";
 import Heading from "./Heading";
 
 describe("Heading component", () => {
+  beforeEach(() => {
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume()));
+  });
   it("renders heading", () => {
     // Given
     const { container } = render(<Heading />);
