@@ -28,11 +28,13 @@ const useLocalStorageToIntialize = (): [
   return [firstName, setFirstName, lastName, setLastName];
 };
 
-const getLocalResume = (): Resume => {
-  return JSON.parse(getLocal("resume")!);
-};
-
-export default function Heading() {
+const useOnHeadingChange = (): [
+  string,
+  (e: React.ChangeEvent<HTMLInputElement>) => void,
+  string,
+  (e: React.ChangeEvent<HTMLInputElement>) => void,
+  () => void
+] => {
   const [firstName, setFirstName, lastName, setLastName] =
     useLocalStorageToIntialize();
 
@@ -51,6 +53,17 @@ export default function Heading() {
   };
 
   const onNext = () => {};
+
+  return [firstName, onFirstNameChange, lastName, onLastNameChange, onNext];
+};
+
+const getLocalResume = (): Resume => {
+  return JSON.parse(getLocal("resume")!);
+};
+
+export default function Heading() {
+  const [firstName, onFirstNameChange, lastName, onLastNameChange, onNext] =
+    useOnHeadingChange();
 
   return (
     <div className="container">
