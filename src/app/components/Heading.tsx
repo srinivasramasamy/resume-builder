@@ -73,6 +73,18 @@ export default function Heading() {
     updateStateAndLocalResume(updatedResume);
   };
 
+  const onZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        zip: e.target.value,
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
   return (
     <div className="container">
       <h1>Heading</h1>
@@ -129,7 +141,13 @@ export default function Heading() {
           <label htmlFor="zip" className="form-label">
             Zip
           </label>
-          <input type="text" className="form-control" id="zip" />
+          <input
+            type="text"
+            className="form-control"
+            id="zip"
+            onChange={onZipChange}
+            value={resume.heading.zip}
+          />
         </div>
         <div className="col-md-6">
           <label htmlFor="phone" className="form-label">

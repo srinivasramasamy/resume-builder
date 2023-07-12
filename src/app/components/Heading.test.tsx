@@ -159,4 +159,19 @@ describe("Heading component", () => {
       state
     );
   });
+
+  it("renders zip form local storage", () => {
+    // Given
+    const zip: string = "24450";
+    const heading: HeadingType = new HeadingType({ zip: zip });
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#zip")?.getAttribute("value")).toBe(zip);
+  });
 });
