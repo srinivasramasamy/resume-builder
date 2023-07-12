@@ -49,6 +49,18 @@ export default function Heading() {
     updateStateAndLocalResume(updatedResume);
   };
 
+  const onCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        city: e.target.value,
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
   return (
     <div className="container">
       <h1>Heading</h1>
@@ -81,7 +93,13 @@ export default function Heading() {
           <label htmlFor="city" className="form-label">
             City
           </label>
-          <input type="text" className="form-control" id="city" />
+          <input
+            type="text"
+            className="form-control"
+            id="city"
+            onChange={onCityChange}
+            value={resume.heading.city}
+          />
         </div>
         <div className="col-md-3">
           <label htmlFor="state" className="form-label">

@@ -93,7 +93,9 @@ describe("Heading component", () => {
   it("renders first name form local storage", () => {
     // Given
     const firstName: string = "First Name";
-    const heading: HeadingType = new HeadingType(new Name(firstName));
+    const heading: HeadingType = new HeadingType({
+      name: new Name({ firstName: firstName }),
+    });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
@@ -110,7 +112,9 @@ describe("Heading component", () => {
   it("renders last name form local storage", () => {
     // Given
     const lasstName: string = "Last Name";
-    const heading: HeadingType = new HeadingType(new Name("", lasstName));
+    const heading: HeadingType = new HeadingType({
+      name: new Name({ lastName: lasstName }),
+    });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
@@ -122,5 +126,20 @@ describe("Heading component", () => {
     expect(container.querySelector("#lastName")?.getAttribute("value")).toBe(
       lasstName
     );
+  });
+
+  it("renders city form local storage", () => {
+    // Given
+    const city: string = "City";
+    const heading: HeadingType = new HeadingType({ city: city });
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#city")?.getAttribute("value")).toBe(city);
   });
 });
