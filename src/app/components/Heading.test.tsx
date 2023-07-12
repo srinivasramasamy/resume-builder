@@ -142,4 +142,21 @@ describe("Heading component", () => {
     // Then
     expect(container.querySelector("#city")?.getAttribute("value")).toBe(city);
   });
+
+  it("renders state form local storage", () => {
+    // Given
+    const state: string = "State";
+    const heading: HeadingType = new HeadingType({ state: state });
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#state")?.getAttribute("value")).toBe(
+      state
+    );
+  });
 });
