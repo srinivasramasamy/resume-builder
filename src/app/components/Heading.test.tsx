@@ -10,6 +10,11 @@ describe("Heading component", () => {
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume()));
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders heading", () => {
     // Given
     const { container } = render(<Heading />);
@@ -189,6 +194,23 @@ describe("Heading component", () => {
     // Then
     expect(container.querySelector("#phoneNumber")?.getAttribute("value")).toBe(
       phoneNumber
+    );
+  });
+
+  it("renders email form local storage", () => {
+    // Given
+    const email: string = "email@gmail.com";
+    const heading: HeadingType = new HeadingType({ email: email });
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#email")?.getAttribute("value")).toBe(
+      email
     );
   });
 });

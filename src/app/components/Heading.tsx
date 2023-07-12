@@ -97,6 +97,18 @@ export default function Heading() {
     updateStateAndLocalResume(updatedResume);
   };
 
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        email: e.target.value,
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
   return (
     <div className="container">
       <h1>Heading</h1>
@@ -177,7 +189,13 @@ export default function Heading() {
           <label htmlFor="email" className="form-label">
             Email
           </label>
-          <input type="email" className="form-control" id="email" />
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            onChange={onEmailChange}
+            value={resume.heading.email}
+          />
         </div>
         <div className="col-6">
           <button id="back" type="button" className="btn btn-dark">
