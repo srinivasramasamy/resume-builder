@@ -63,7 +63,7 @@ describe("Heading component", () => {
     const { container } = render(<Heading />);
 
     // Then
-    expect(container.querySelector("#phone")).toBeTruthy();
+    expect(container.querySelector("#phoneNumber")).toBeTruthy();
   });
 
   it("renders email", () => {
@@ -173,5 +173,22 @@ describe("Heading component", () => {
 
     // Then
     expect(container.querySelector("#zip")?.getAttribute("value")).toBe(zip);
+  });
+
+  it("renders phone form local storage", () => {
+    // Given
+    const phoneNumber: string = "1234567890";
+    const heading: HeadingType = new HeadingType({ phoneNumber: phoneNumber });
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume(heading)));
+
+    // When
+    const { container } = render(<Heading />);
+
+    // Then
+    expect(container.querySelector("#phoneNumber")?.getAttribute("value")).toBe(
+      phoneNumber
+    );
   });
 });

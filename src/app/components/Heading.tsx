@@ -85,6 +85,18 @@ export default function Heading() {
     updateStateAndLocalResume(updatedResume);
   };
 
+  const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedResume: Resume = {
+      ...resume,
+      heading: {
+        ...resume?.heading,
+        phoneNumber: e.target.value,
+      },
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
   return (
     <div className="container">
       <h1>Heading</h1>
@@ -150,10 +162,16 @@ export default function Heading() {
           />
         </div>
         <div className="col-md-6">
-          <label htmlFor="phone" className="form-label">
+          <label htmlFor="phoneNumber" className="form-label">
             Phone
           </label>
-          <input type="number" className="form-control" id="phone" />
+          <input
+            type="text"
+            className="form-control"
+            id="phoneNumber"
+            onChange={onPhoneNumberChange}
+            value={resume.heading.phoneNumber}
+          />
         </div>
         <div className="col-md-6">
           <label htmlFor="email" className="form-label">
