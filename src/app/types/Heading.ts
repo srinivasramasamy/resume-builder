@@ -2,22 +2,22 @@ import Name from "./Name";
 
 export class Heading {
   name: Name;
-  phoneNumber: number | null;
+  phoneNumber: string;
   email: string;
   city: string;
   state: string;
   zip: string;
   links: Link[];
 
-  constructor(
-    name: Name = new Name(),
-    phoneNumber: number | null = null,
-    email: string = "",
-    city: string = "",
-    state: string = "",
-    zip: string = "",
-    links: Link[] = []
-  ) {
+  constructor({
+    name = new Name(),
+    phoneNumber = "",
+    email = "",
+    city = "",
+    state = "",
+    zip = "",
+    links = [],
+  } = {}) {
     this.name = name;
     this.phoneNumber = phoneNumber;
     this.email = email;

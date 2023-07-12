@@ -10,7 +10,7 @@ describe("Resume", () => {
     // Then
     expect(heading.name.firstName).toBe("");
     expect(heading.name.lastName).toBe("");
-    expect(heading.phoneNumber).toBeNull();
+    expect(heading.phoneNumber).toBe("");
     expect(heading.email).toBe("");
     expect(heading.city).toBe("");
     expect(heading.state).toBe("");
