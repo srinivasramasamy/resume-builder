@@ -1,4 +1,4 @@
-class Link {
+export class Link {
   name: string;
   url: string;
   constructor(name: string, url: string) {
