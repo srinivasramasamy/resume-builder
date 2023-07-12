@@ -41,4 +41,48 @@ describe("Heading", () => {
     // Then
     expect(heading.phoneNumber).toBe(phoneNumber);
   });
+
+  it("should initialize with email", () => {
+    // Given
+    const email: string = "email@gmail.com";
+
+    // When
+    const heading: Heading = new Heading({ email: email });
+
+    // Then
+    expect(heading.email).toBe(email);
+  });
+
+  it("should initialize with city", () => {
+    // Given
+    const city: string = "City";
+
+    // When
+    const heading: Heading = new Heading({ city: city });
+
+    // Then
+    expect(heading.city).toBe(city);
+  });
+
+  it("should initialize with state", () => {
+    // Given
+    const state: string = "State";
+
+    // When
+    const heading: Heading = new Heading({ state: state });
+
+    // Then
+    expect(heading.state).toBe(state);
+  });
+
+  it("should initialize with zip", () => {
+    // Given
+    const zip: string = "29220";
+
+    // When
+    const heading: Heading = new Heading({ zip: zip });
+
+    // Then
+    expect(heading.zip).toBe(zip);
+  });
 });
