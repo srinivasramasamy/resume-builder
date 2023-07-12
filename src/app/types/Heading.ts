@@ -1,3 +1,4 @@
+import { Link } from "./Link";
 import Name from "./Name";
 
 export class Heading {
