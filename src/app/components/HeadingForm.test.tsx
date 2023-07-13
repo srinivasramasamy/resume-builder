@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
-import { Heading as HeadingType } from "../types/Heading";
+import { Heading } from "../types/Heading";
 import Name from "../types/Name";
 import Resume from "../types/Resume";
-import Heading from "./Heading";
+import HeadingForm from "./HeadingForm";
 
-describe("Heading component", () => {
+describe("Heading Form", () => {
   beforeEach(() => {
     jest
       .spyOn(Storage.prototype, "getItem")
@@ -17,7 +17,7 @@ describe("Heading component", () => {
 
   it("renders heading", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("h1")?.textContent).toEqual("Heading");
@@ -25,7 +25,7 @@ describe("Heading component", () => {
 
   it("renders first name", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#firstName")).toBeTruthy();
@@ -33,7 +33,7 @@ describe("Heading component", () => {
 
   it("renders last name", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#lastName")).toBeTruthy();
@@ -41,7 +41,7 @@ describe("Heading component", () => {
 
   it("renders city", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#city")).toBeTruthy();
@@ -49,7 +49,7 @@ describe("Heading component", () => {
 
   it("renders state", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#state")).toBeTruthy();
@@ -57,7 +57,7 @@ describe("Heading component", () => {
 
   it("renders zip", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#zip")).toBeTruthy();
@@ -65,7 +65,7 @@ describe("Heading component", () => {
 
   it("renders phone", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#phoneNumber")).toBeTruthy();
@@ -73,7 +73,7 @@ describe("Heading component", () => {
 
   it("renders email", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#email")).toBeTruthy();
@@ -81,7 +81,7 @@ describe("Heading component", () => {
 
   it("renders back", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#back")).toBeTruthy();
@@ -89,7 +89,7 @@ describe("Heading component", () => {
 
   it("renders next", () => {
     // Given
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#next")).toBeTruthy();
@@ -98,7 +98,7 @@ describe("Heading component", () => {
   it("renders first name form local storage", () => {
     // Given
     const firstName: string = "First Name";
-    const heading: HeadingType = new HeadingType({
+    const heading: Heading = new Heading({
       name: new Name({ firstName: firstName }),
     });
     jest
@@ -106,7 +106,7 @@ describe("Heading component", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#firstName")?.getAttribute("value")).toBe(
@@ -117,7 +117,7 @@ describe("Heading component", () => {
   it("renders last name form local storage", () => {
     // Given
     const lasstName: string = "Last Name";
-    const heading: HeadingType = new HeadingType({
+    const heading: Heading = new Heading({
       name: new Name({ lastName: lasstName }),
     });
     jest
@@ -125,7 +125,7 @@ describe("Heading component", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#lastName")?.getAttribute("value")).toBe(
@@ -136,13 +136,13 @@ describe("Heading component", () => {
   it("renders city form local storage", () => {
     // Given
     const city: string = "City";
-    const heading: HeadingType = new HeadingType({ city: city });
+    const heading: Heading = new Heading({ city: city });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#city")?.getAttribute("value")).toBe(city);
@@ -151,13 +151,13 @@ describe("Heading component", () => {
   it("renders state form local storage", () => {
     // Given
     const state: string = "State";
-    const heading: HeadingType = new HeadingType({ state: state });
+    const heading: Heading = new Heading({ state: state });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#state")?.getAttribute("value")).toBe(
@@ -168,13 +168,13 @@ describe("Heading component", () => {
   it("renders zip form local storage", () => {
     // Given
     const zip: string = "24450";
-    const heading: HeadingType = new HeadingType({ zip: zip });
+    const heading: Heading = new Heading({ zip: zip });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#zip")?.getAttribute("value")).toBe(zip);
@@ -183,13 +183,13 @@ describe("Heading component", () => {
   it("renders phone form local storage", () => {
     // Given
     const phoneNumber: string = "1234567890";
-    const heading: HeadingType = new HeadingType({ phoneNumber: phoneNumber });
+    const heading: Heading = new Heading({ phoneNumber: phoneNumber });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#phoneNumber")?.getAttribute("value")).toBe(
@@ -200,13 +200,13 @@ describe("Heading component", () => {
   it("renders email form local storage", () => {
     // Given
     const email: string = "email@gmail.com";
-    const heading: HeadingType = new HeadingType({ email: email });
+    const heading: Heading = new Heading({ email: email });
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<Heading />);
+    const { container } = render(<HeadingForm />);
 
     // Then
     expect(container.querySelector("#email")?.getAttribute("value")).toBe(

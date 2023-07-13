@@ -22,7 +22,7 @@ const setLocalResume = (resume: Resume) => {
   setLocal("resume", JSON.stringify(resume));
 };
 
-export default function Heading() {
+export default function HeadingForm() {
   const [resume, updateStateAndLocalResume] = useResume();
 
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {

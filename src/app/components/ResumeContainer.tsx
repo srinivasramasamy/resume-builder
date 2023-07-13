@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Resume from "../types/Resume";
-import Heading from "./Heading";
+import HeadingForm from "./HeadingForm";
 
 export default function ResumeContainer() {
   const [showHeading, setShowHeading] = useState(false);
@@ -9,5 +9,5 @@ export default function ResumeContainer() {
       ? ""
       : localStorage.setItem("resume", JSON.stringify(new Resume()));
   }, []);
-  return <>{showHeading && <Heading />}</>;
+  return <>{showHeading && <HeadingForm />}</>;
 }
