@@ -146,7 +146,7 @@ export default function Heading() {
             className="form-control"
             id="city"
             onChange={onCityChange}
-            value={resume.heading.city}
+            value={resume?.heading.city}
           />
         </div>
         <div className="col-md-3">
@@ -158,7 +158,7 @@ export default function Heading() {
             className="form-control"
             id="state"
             onChange={onStateChange}
-            value={resume.heading.state}
+            value={resume?.heading.state}
           />
         </div>
         <div className="col-md-3">
@@ -170,7 +170,7 @@ export default function Heading() {
             className="form-control"
             id="zip"
             onChange={onZipChange}
-            value={resume.heading.zip}
+            value={resume?.heading.zip}
           />
         </div>
         <div className="col-md-6">
@@ -182,7 +182,7 @@ export default function Heading() {
             className="form-control"
             id="phoneNumber"
             onChange={onPhoneNumberChange}
-            value={resume.heading.phoneNumber}
+            value={resume?.heading.phoneNumber}
           />
         </div>
         <div className="col-md-6">
@@ -194,7 +194,7 @@ export default function Heading() {
             className="form-control"
             id="email"
             onChange={onEmailChange}
-            value={resume.heading.email}
+            value={resume?.heading.email}
           />
         </div>
         <div className="col-6">
