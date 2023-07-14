@@ -1,7 +1,7 @@
-interface Props {
+interface IProps {
   onStart: () => void;
 }
-function Welcome({ onStart }: Props) {
+function Welcome({ onStart }: IProps) {
   return (
     <div className="position-absolute top-50 start-50 translate-middle text-center">
       <div className="grid">
