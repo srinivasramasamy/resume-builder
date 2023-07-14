@@ -22,4 +22,12 @@ describe("Resume container", () => {
     // Then
     expect(queryByText("Heading")).toBeFalsy();
   });
+
+  it("should show welcome", () => {
+    // Given
+    const { container } = render(<ResumeContainer />);
+
+    // Then
+    expect(container.querySelector("#start")).toBeTruthy();
+  });
 });
