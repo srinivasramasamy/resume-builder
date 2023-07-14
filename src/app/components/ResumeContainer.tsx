@@ -7,6 +7,10 @@ export default function ResumeContainer() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showHeadingForm, setShowHeadingForm] = useState(false);
 
+  const onStart = () => {
+    setShowWelcome(false);
+  };
+
   useEffect(() => {
     localStorage.getItem("resume")
       ? ""
@@ -14,7 +18,7 @@ export default function ResumeContainer() {
   }, []);
   return (
     <>
-      {showWelcome && <Welcome />}
+      {showWelcome && <Welcome onStart={onStart} />}
       {showHeadingForm && <HeadingForm />}
     </>
   );

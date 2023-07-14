@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Resume from "../types/Resume";
 import ResumeContainer from "./ResumeContainer";
 
@@ -12,8 +12,6 @@ describe("Resume container", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-
-  it.todo("Should set default resume to local storage");
 
   it("should hide heading form", () => {
     // Given
@@ -29,5 +27,17 @@ describe("Resume container", () => {
 
     // Then
     expect(container.querySelector("#start")).toBeTruthy();
+  });
+
+  it("should hide welcome on clicking start", () => {
+    // Given
+    const { queryByText } = render(<ResumeContainer />);
+    const start: Element = queryByText("Start")!;
+
+    // When
+    fireEvent.click(start);
+
+    // Then
+    expect(queryByText("Start")).toBeFalsy();
   });
 });
