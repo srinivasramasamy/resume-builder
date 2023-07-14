@@ -40,4 +40,16 @@ describe("Resume container", () => {
     // Then
     expect(queryByText("Start")).toBeFalsy();
   });
+
+  it("should show heading form on clicking start", () => {
+    // Given
+    const { queryByText } = render(<ResumeContainer />);
+    const start: Element = queryByText("Start")!;
+
+    // When
+    fireEvent.click(start);
+
+    // Then
+    expect(queryByText("Heading")).toBeTruthy();
+  });
 });

@@ -9,6 +9,7 @@ export default function ResumeContainer() {
 
   const onStart = () => {
     setShowWelcome(false);
+    setShowHeadingForm(true);
   };
 
   useEffect(() => {
