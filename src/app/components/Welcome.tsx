@@ -1,5 +1,5 @@
 interface Props {
-  onStart: () => {};
+  onStart: () => void;
 }
 function Welcome({ onStart }: Props) {
   return (
