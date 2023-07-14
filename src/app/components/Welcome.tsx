@@ -1,4 +1,7 @@
-function Welcome() {
+interface Props {
+  onStart: () => {};
+}
+function Welcome({ onStart }: Props) {
   return (
     <div className="position-absolute top-50 start-50 translate-middle text-center">
       <div className="grid">
@@ -9,7 +12,12 @@ function Welcome() {
         </div>
         <div className="row">
           <div className="col-12">
-            <button id="start" type="button" className="btn btn-dark">
+            <button
+              id="start"
+              type="button"
+              className="btn btn-dark"
+              onClick={onStart}
+            >
               Start
             </button>
           </div>
