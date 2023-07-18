@@ -19,7 +19,9 @@ export default function ResumeContainer() {
   return (
     <>
       {showPage === Page.Welcome && <Welcome onStart={onPageChange} />}
-      {showPage === Page.HeadingForm && <HeadingForm />}
+      {showPage === Page.HeadingForm && (
+        <HeadingForm onPageChange={onPageChange} />
+      )}
     </>
   );
 }

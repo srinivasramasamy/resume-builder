@@ -52,4 +52,18 @@ describe("Resume container", () => {
     // Then
     expect(queryByText("Heading")).toBeTruthy();
   });
+
+  it("should show welcome when back is clicked from heading form", () => {
+    // Given
+    const { queryByText } = render(<ResumeContainer />);
+    const start: Element = queryByText("Start")!;
+    fireEvent.click(start);
+    const back: Element = queryByText("Back")!;
+
+    // When
+    fireEvent.click(back);
+
+    // Then
+    expect(queryByText("Start")).toBeTruthy();
+  });
 });
