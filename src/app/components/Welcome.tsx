@@ -1,5 +1,7 @@
+import { Page } from "../types/Page";
+
 interface IProps {
-  onStart: () => void;
+  onStart: (page: Page) => void;
 }
 function Welcome({ onStart }: IProps) {
   return (
@@ -16,7 +18,7 @@ function Welcome({ onStart }: IProps) {
               id="start"
               type="button"
               className="btn btn-dark"
-              onClick={onStart}
+              onClick={() => onStart(Page.HeadingForm)}
             >
               Start
             </button>

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import HeadingForm from "./HeadingForm";
 import Welcome from "./Welcome";
 
 export default function ResumeContainer() {
-  const [showWelcome, setShowWelcome] = useState(true);
-  const [showHeadingForm, setShowHeadingForm] = useState(false);
+  const [showPage, setShowPage] = useState<Page>(Page.Welcome);
 
-  const onStart = () => {
-    setShowWelcome(false);
-    setShowHeadingForm(true);
+  const onPageChange = (page: Page) => {
+    setShowPage(page);
   };
 
   useEffect(() => {
@@ -19,8 +18,8 @@ export default function ResumeContainer() {
   }, []);
   return (
     <>
-      {showWelcome && <Welcome onStart={onStart} />}
-      {showHeadingForm && <HeadingForm />}
+      {showPage === Page.Welcome && <Welcome onStart={onPageChange} />}
+      {showPage === Page.HeadingForm && <HeadingForm />}
     </>
   );
 }
