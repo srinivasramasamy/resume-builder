@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Heading } from "../types/Heading";
 import Name from "../types/Name";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import HeadingForm from "./HeadingForm";
 
@@ -17,7 +18,7 @@ describe("Heading Form", () => {
 
   it("renders heading", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("h1")?.textContent).toEqual("Heading");
@@ -25,7 +26,7 @@ describe("Heading Form", () => {
 
   it("renders first name", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#firstName")).toBeTruthy();
@@ -33,7 +34,7 @@ describe("Heading Form", () => {
 
   it("renders last name", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#lastName")).toBeTruthy();
@@ -41,7 +42,7 @@ describe("Heading Form", () => {
 
   it("renders city", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#city")).toBeTruthy();
@@ -49,7 +50,7 @@ describe("Heading Form", () => {
 
   it("renders state", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#state")).toBeTruthy();
@@ -57,7 +58,7 @@ describe("Heading Form", () => {
 
   it("renders zip", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#zip")).toBeTruthy();
@@ -65,7 +66,7 @@ describe("Heading Form", () => {
 
   it("renders phone", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#phoneNumber")).toBeTruthy();
@@ -73,7 +74,7 @@ describe("Heading Form", () => {
 
   it("renders email", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#email")).toBeTruthy();
@@ -81,7 +82,7 @@ describe("Heading Form", () => {
 
   it("renders back", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#back")).toBeTruthy();
@@ -89,7 +90,7 @@ describe("Heading Form", () => {
 
   it("renders next", () => {
     // Given
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#next")).toBeTruthy();
@@ -106,7 +107,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#firstName")?.getAttribute("value")).toBe(
@@ -125,7 +126,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#lastName")?.getAttribute("value")).toBe(
@@ -142,7 +143,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#city")?.getAttribute("value")).toBe(city);
@@ -157,7 +158,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#state")?.getAttribute("value")).toBe(
@@ -174,7 +175,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#zip")?.getAttribute("value")).toBe(zip);
@@ -189,7 +190,7 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#phoneNumber")?.getAttribute("value")).toBe(
@@ -206,11 +207,24 @@ describe("Heading Form", () => {
       .mockReturnValue(JSON.stringify(new Resume(heading)));
 
     // When
-    const { container } = render(<HeadingForm />);
+    const { container } = render(<HeadingForm onPageChange={jest.fn()} />);
 
     // Then
     expect(container.querySelector("#email")?.getAttribute("value")).toBe(
       email
     );
+  });
+
+  it("should call on page change with welcome", () => {
+    // Given
+    const onPageChange = jest.fn();
+    const { queryByText } = render(<HeadingForm onPageChange={onPageChange} />);
+    const back: Element = queryByText("Back")!;
+
+    // When
+    fireEvent.click(back);
+
+    // Then
+    expect(onPageChange).toBeCalledWith(Page.Welcome);
   });
 });

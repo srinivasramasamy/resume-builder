@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import { getLocal, setLocal } from "../util/Utility";
+
+interface IProps {
+  onPageChange: (page: Page) => void;
+}
 
 const useResume = (): [Resume, (resume: Resume) => void] => {
   const [resume, setResume] = useState<Resume>(new Resume());
@@ -22,7 +27,7 @@ const setLocalResume = (resume: Resume) => {
   setLocal("resume", JSON.stringify(resume));
 };
 
-export default function HeadingForm() {
+export default function HeadingForm({ onPageChange }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
 
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -198,7 +203,12 @@ export default function HeadingForm() {
           />
         </div>
         <div className="col-6">
-          <button id="back" type="button" className="btn btn-dark">
+          <button
+            id="back"
+            type="button"
+            className="btn btn-dark"
+            onClick={() => onPageChange(Page.Welcome)}
+          >
             Back
           </button>
         </div>
