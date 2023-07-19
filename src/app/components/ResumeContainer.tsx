@@ -8,10 +8,6 @@ import Welcome from "./Welcome";
 export default function ResumeContainer() {
   const [showPage, setShowPage] = useState<Page>(Page.Welcome);
 
-  const onPageChange = (page: Page) => {
-    setShowPage(page);
-  };
-
   useEffect(() => {
     localStorage.getItem("resume")
       ? ""
@@ -19,9 +15,9 @@ export default function ResumeContainer() {
   }, []);
   return (
     <>
-      {showPage === Page.Welcome && <Welcome onStart={onPageChange} />}
+      {showPage === Page.Welcome && <Welcome onStart={setShowPage} />}
       {showPage === Page.HeadingForm && (
-        <HeadingForm onPageChange={onPageChange} />
+        <HeadingForm onPageChange={setShowPage} />
       )}
       {showPage === Page.ProfessionalSummaryForm && <ProfessionalSummaryForm />}
     </>
