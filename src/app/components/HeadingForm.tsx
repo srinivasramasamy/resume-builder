@@ -217,7 +217,7 @@ export default function HeadingForm({ onPageChange }: IProps) {
             id="next"
             type="button"
             className="btn btn-dark"
-            onClick={() => {}}
+            onClick={() => onPageChange(Page.ProfessionalSummaryForm)}
           >
             Next
           </button>

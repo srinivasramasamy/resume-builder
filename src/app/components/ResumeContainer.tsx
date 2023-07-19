@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import HeadingForm from "./HeadingForm";
+import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 import Welcome from "./Welcome";
 
 export default function ResumeContainer() {
@@ -22,6 +23,7 @@ export default function ResumeContainer() {
       {showPage === Page.HeadingForm && (
         <HeadingForm onPageChange={onPageChange} />
       )}
+      {showPage === Page.ProfessionalSummaryForm && <ProfessionalSummaryForm />}
     </>
   );
 }

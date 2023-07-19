@@ -227,4 +227,17 @@ describe("Heading Form", () => {
     // Then
     expect(onPageChange).toBeCalledWith(Page.Welcome);
   });
+
+  it("should call on page change with professional form", () => {
+    // Given
+    const onPageChange = jest.fn();
+    const { queryByText } = render(<HeadingForm onPageChange={onPageChange} />);
+    const next: Element = queryByText("Next")!;
+
+    // When
+    fireEvent.click(next);
+
+    // Then
+    expect(onPageChange).toBeCalledWith(Page.ProfessionalSummaryForm);
+  });
 });

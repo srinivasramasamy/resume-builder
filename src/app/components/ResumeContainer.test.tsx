@@ -66,4 +66,18 @@ describe("Resume container", () => {
     // Then
     expect(queryByText("Start")).toBeTruthy();
   });
+
+  it("should show professional summary form when next is clicked from heading form", () => {
+    // Given
+    const { queryByText } = render(<ResumeContainer />);
+    const start: Element = queryByText("Start")!;
+    fireEvent.click(start);
+    const back: Element = queryByText("Next")!;
+
+    // When
+    fireEvent.click(back);
+
+    // Then
+    expect(queryByText("Professional Summary")).toBeTruthy();
+  });
 });
