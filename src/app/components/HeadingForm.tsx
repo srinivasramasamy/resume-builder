@@ -4,7 +4,7 @@ import Resume from "../types/Resume";
 import { getLocal, setLocal } from "../util/Utility";
 
 interface IProps {
-  onPageChange: (page: Page) => void;
+  setPage: (page: Page) => void;
 }
 
 const useResume = (): [Resume, (resume: Resume) => void] => {
@@ -27,7 +27,7 @@ const setLocalResume = (resume: Resume) => {
   setLocal("resume", JSON.stringify(resume));
 };
 
-export default function HeadingForm({ onPageChange }: IProps) {
+export default function HeadingForm({ setPage }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
 
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -207,7 +207,7 @@ export default function HeadingForm({ onPageChange }: IProps) {
             id="back"
             type="button"
             className="btn btn-dark"
-            onClick={() => onPageChange(Page.Welcome)}
+            onClick={() => setPage(Page.Welcome)}
           >
             Back
           </button>
@@ -217,7 +217,7 @@ export default function HeadingForm({ onPageChange }: IProps) {
             id="next"
             type="button"
             className="btn btn-dark"
-            onClick={() => onPageChange(Page.ProfessionalSummaryForm)}
+            onClick={() => setPage(Page.ProfessionalSummaryForm)}
           >
             Next
           </button>
