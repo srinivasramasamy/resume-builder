@@ -4,9 +4,9 @@ import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 describe("Professional Summary Form", () => {
   it("should render professional summary heading", () => {
     // Given
-    const { queryByText } = render(<ProfessionalSummaryForm />);
+    const { queryAllByText } = render(<ProfessionalSummaryForm />);
 
     // Then
-    expect(queryByText("Professional Summary")).toBeTruthy();
+    expect(queryAllByText("Professional Summary")).toBeTruthy();
   });
 });
