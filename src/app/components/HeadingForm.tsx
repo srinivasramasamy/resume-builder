@@ -1,31 +1,10 @@
-import { useEffect, useState } from "react";
+import { useResume } from "../hooks/UseResume";
 import { Page } from "../types/Page";
 import Resume from "../types/Resume";
-import { getLocal, setLocal } from "../util/Utility";
 
 interface IProps {
   setPage: (page: Page) => void;
 }
-
-const useResume = (): [Resume, (resume: Resume) => void] => {
-  const [resume, setResume] = useState<Resume>(new Resume());
-  useEffect(() => {
-    setResume(getLocalResume());
-  }, []);
-  const updateStateAndLocalResume = (resume: Resume) => {
-    setResume(resume);
-    setLocalResume(resume);
-  };
-  return [resume, updateStateAndLocalResume];
-};
-
-const getLocalResume = (): Resume => {
-  return JSON.parse(getLocal("resume")!);
-};
-
-const setLocalResume = (resume: Resume) => {
-  setLocal("resume", JSON.stringify(resume));
-};
 
 export default function HeadingForm({ setPage }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
