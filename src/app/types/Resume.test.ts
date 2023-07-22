@@ -2,7 +2,7 @@ import { Heading } from "./Heading";
 import Resume from "./Resume";
 
 describe("Resume", () => {
-  it("should initialize with default values", () => {
+  it("should initialize heading with default values", () => {
     // Given
     const resume: Resume = new Resume();
     const heading: Heading = resume.heading;
@@ -16,5 +16,14 @@ describe("Resume", () => {
     expect(heading.state).toBe("");
     expect(heading.zip).toBe("");
     expect(heading.links).toStrictEqual([]);
+  });
+
+  it("should initialize professional summary with default value", () => {
+    // Given
+    const resume: Resume = new Resume();
+    const professionalSummary: string = resume.professionalSummary;
+
+    // Then
+    expect(professionalSummary).toBe("");
   });
 });
