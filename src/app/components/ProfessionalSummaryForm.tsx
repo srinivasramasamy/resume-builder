@@ -1,4 +1,20 @@
+import { useResume } from "../hooks/UseResume";
+import Resume from "../types/Resume";
+
 export default function ProfessionalSummaryForm() {
+  const [resume, updateStateAndLocalResume] = useResume();
+
+  const onProfessionalSummaryChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const updatedResume: Resume = {
+      ...resume,
+      professionalSummary: e.target.value,
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
+
   return (
     <div className="container">
       <h1>Professional Summary</h1>
@@ -11,6 +27,8 @@ export default function ProfessionalSummaryForm() {
             className="form-control"
             id="professionalSummary"
             rows={3}
+            value={resume?.professionalSummary}
+            onChange={onProfessionalSummaryChange}
           ></textarea>
         </div>
       </form>

@@ -104,7 +104,7 @@ describe("Heading Form", () => {
     });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -123,7 +123,7 @@ describe("Heading Form", () => {
     });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -140,7 +140,7 @@ describe("Heading Form", () => {
     const heading: Heading = new Heading({ city: city });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -155,7 +155,7 @@ describe("Heading Form", () => {
     const heading: Heading = new Heading({ state: state });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -172,7 +172,7 @@ describe("Heading Form", () => {
     const heading: Heading = new Heading({ zip: zip });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -187,7 +187,7 @@ describe("Heading Form", () => {
     const heading: Heading = new Heading({ phoneNumber: phoneNumber });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
@@ -204,7 +204,7 @@ describe("Heading Form", () => {
     const heading: Heading = new Heading({ email: email });
     jest
       .spyOn(Storage.prototype, "getItem")
-      .mockReturnValue(JSON.stringify(new Resume(heading)));
+      .mockReturnValue(JSON.stringify(new Resume({ heading: heading })));
 
     // When
     const { container } = render(<HeadingForm setPage={jest.fn()} />);
