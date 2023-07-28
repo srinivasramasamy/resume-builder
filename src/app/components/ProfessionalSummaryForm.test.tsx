@@ -16,7 +16,9 @@ describe("Professional Summary Form", () => {
 
   it("should render professional summary heading", () => {
     // Given
-    const { queryAllByText } = render(<ProfessionalSummaryForm />);
+    const { queryAllByText } = render(
+      <ProfessionalSummaryForm setPage={jest.fn()} />
+    );
 
     // Then
     expect(queryAllByText("Professional Summary")).toBeTruthy();
@@ -32,7 +34,9 @@ describe("Professional Summary Form", () => {
       );
 
     // When
-    const { container } = render(<ProfessionalSummaryForm />);
+    const { container } = render(
+      <ProfessionalSummaryForm setPage={jest.fn()} />
+    );
 
     // Then
     expect(container.querySelector("#professionalSummary")?.textContent).toBe(
