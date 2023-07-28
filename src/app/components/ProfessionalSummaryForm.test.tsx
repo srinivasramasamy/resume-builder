@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 
@@ -37,5 +38,20 @@ describe("Professional Summary Form", () => {
     expect(container.querySelector("#professionalSummary")?.textContent).toBe(
       professionalSummary
     );
+  });
+
+  it("should call set page with professional form on back click", () => {
+    // Given
+    const setPage = jest.fn();
+    const { queryByText } = render(
+      <ProfessionalSummaryForm setPage={setPage} />
+    );
+    const back: Element = queryByText("Back")!;
+
+    // When
+    fireEvent.click(back);
+
+    // Then
+    expect(setPage).toBeCalledWith(Page.HeadingForm);
   });
 });

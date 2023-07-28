@@ -1,7 +1,12 @@
 import { useResume } from "../hooks/UseResume";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 
-export default function ProfessionalSummaryForm() {
+interface IProps {
+  setPage: (page: Page) => void;
+}
+
+export default function ProfessionalSummaryForm({ setPage }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
 
   const onProfessionalSummaryChange = (
@@ -30,6 +35,16 @@ export default function ProfessionalSummaryForm() {
             value={resume?.professionalSummary}
             onChange={onProfessionalSummaryChange}
           ></textarea>
+        </div>
+        <div className="col-6">
+          <button
+            id="back"
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setPage(Page.HeadingForm)}
+          >
+            Back
+          </button>
         </div>
       </form>
     </div>
