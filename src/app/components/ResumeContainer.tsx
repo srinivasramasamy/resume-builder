@@ -17,7 +17,9 @@ export default function ResumeContainer() {
     <>
       {page === Page.Welcome && <Welcome onStart={setPage} />}
       {page === Page.HeadingForm && <HeadingForm setPage={setPage} />}
-      {page === Page.ProfessionalSummaryForm && <ProfessionalSummaryForm />}
+      {page === Page.ProfessionalSummaryForm && (
+        <ProfessionalSummaryForm setPage={setPage} />
+      )}
     </>
   );
 }

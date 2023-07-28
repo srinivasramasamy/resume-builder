@@ -80,4 +80,20 @@ describe("Resume container", () => {
     // Then
     expect(queryAllByText("Professional Summary")).toBeTruthy();
   });
+
+  it("should show heading form when back is clicked from professional summary form", () => {
+    // Given
+    const { queryByText } = render(<ResumeContainer />);
+    const welcomeStart: Element = queryByText("Start")!;
+    fireEvent.click(welcomeStart);
+    const headerNext: Element = queryByText("Next")!;
+    fireEvent.click(headerNext);
+    const professionalSummaryBack: Element = queryByText("Back")!;
+
+    // When
+    fireEvent.click(professionalSummaryBack);
+
+    // Then
+    expect(queryByText("Heading")).toBeTruthy();
+  });
 });
