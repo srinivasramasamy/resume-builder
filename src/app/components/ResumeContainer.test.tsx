@@ -1,4 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
+import React from "react";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import ResumeContainer from "./ResumeContainer";
 
@@ -95,5 +97,16 @@ describe("Resume container", () => {
 
     // Then
     expect(queryByText("Heading")).toBeTruthy();
+  });
+
+  it("should show skills form", () => {
+    // Given
+    React.useState = jest.fn().mockReturnValue([Page.SkillsForm]);
+
+    // When
+    const { queryByText } = render(<ResumeContainer />);
+
+    // Then
+    expect(queryByText("Skills")).toBeTruthy();
   });
 });

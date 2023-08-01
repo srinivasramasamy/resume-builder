@@ -3,6 +3,7 @@ import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import HeadingForm from "./HeadingForm";
 import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
+import Skills from "./Skills";
 import Welcome from "./Welcome";
 
 export default function ResumeContainer() {
@@ -20,6 +21,7 @@ export default function ResumeContainer() {
       {page === Page.ProfessionalSummaryForm && (
         <ProfessionalSummaryForm setPage={setPage} />
       )}
+      {page === Page.SkillsForm && <Skills />}
     </>
   );
 }
