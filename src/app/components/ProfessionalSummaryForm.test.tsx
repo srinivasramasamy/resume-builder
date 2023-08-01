@@ -58,4 +58,19 @@ describe("Professional Summary Form", () => {
     // Then
     expect(setPage).toBeCalledWith(Page.HeadingForm);
   });
+
+  it("should call set page with skills form on next click", () => {
+    // Given
+    const setPage = jest.fn();
+    const { queryByText } = render(
+      <ProfessionalSummaryForm setPage={setPage} />
+    );
+    const next: Element = queryByText("Next")!;
+
+    // When
+    fireEvent.click(next);
+
+    // Then
+    expect(setPage).toBeCalledWith(Page.SkillsForm);
+  });
 });

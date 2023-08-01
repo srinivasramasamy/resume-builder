@@ -46,6 +46,16 @@ export default function ProfessionalSummaryForm({ setPage }: IProps) {
             Back
           </button>
         </div>
+        <div className="col-6">
+          <button
+            id="next"
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setPage(Page.SkillsForm)}
+          >
+            Next
+          </button>
+        </div>
       </form>
     </div>
   );
