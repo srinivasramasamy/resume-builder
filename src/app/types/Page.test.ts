@@ -24,4 +24,12 @@ describe("Page", () => {
     // Then
     expect(professionalSummaryForm).toBe("ProfessionalSummaryForm");
   });
+
+  it("should return skills summary form", () => {
+    // Given
+    const skillsForm: string = Page.SkillsForm;
+
+    // Then
+    expect(skillsForm).toBe("SkillsForm");
+  });
 });
