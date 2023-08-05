@@ -26,4 +26,13 @@ describe("Resume", () => {
     // Then
     expect(professionalSummary).toBe("");
   });
+
+  it("should initialize skills with default value", () => {
+    // Given
+    const resume: Resume = new Resume();
+    const skills: string[] = resume.skills;
+
+    // Then
+    expect(skills).toEqual([]);
+  });
 });
