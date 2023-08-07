@@ -101,6 +101,7 @@ describe("Resume container", () => {
 
   it("should show skills form", () => {
     // Given
+    React.useEffect = jest.fn();
     React.useState = jest.fn().mockReturnValue([Page.SkillsForm]);
 
     // When
