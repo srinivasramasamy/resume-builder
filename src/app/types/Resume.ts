@@ -8,7 +8,7 @@ export default class Resume {
   constructor({
     heading = new Heading(),
     professionalSummary = "",
-    skills = [],
+    skills = new Array<string>(),
   } = {}) {
     this.heading = heading;
     this.professionalSummary = professionalSummary;
