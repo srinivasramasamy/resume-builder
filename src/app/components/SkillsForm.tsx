@@ -1,7 +1,7 @@
 import { useResume } from "../hooks/UseResume";
 import List from "./List";
 
-export default function Skills() {
+export default function SkillsForm() {
   const [resume] = useResume();
 
   return (

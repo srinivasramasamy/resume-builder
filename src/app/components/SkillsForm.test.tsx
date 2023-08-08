@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import Resume from "../types/Resume";
-import Skills from "./Skills";
+import SkillsForm from "./SkillsForm";
 
-describe("Skills", () => {
+describe("SkillsForm", () => {
   beforeEach(() => {
     jest
       .spyOn(Storage.prototype, "getItem")
@@ -15,7 +15,7 @@ describe("Skills", () => {
 
   it("render skills heading", () => {
     // Given
-    const { container } = render(<Skills />);
+    const { container } = render(<SkillsForm />);
 
     // Then
     expect(container.querySelector("h1")?.textContent).toEqual("Skills");
@@ -29,7 +29,7 @@ describe("Skills", () => {
       .mockReturnValue(JSON.stringify(new Resume({ skills: skills })));
 
     // When
-    const { getAllByRole } = render(<Skills />);
+    const { getAllByRole } = render(<SkillsForm />);
 
     // Then
     expect(getAllByRole("listitem").map((li) => li.textContent)).toEqual(
