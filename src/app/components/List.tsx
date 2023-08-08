@@ -1,8 +1,9 @@
 interface IProps {
   items: string[];
+  removeItem: (index: number) => void;
 }
 
-export default function List({ items }: IProps) {
+export default function List({ items, removeItem }: IProps) {
   return (
     <ul className="list-group col-3">
       {items?.map((item, index) => (
@@ -15,6 +16,7 @@ export default function List({ items }: IProps) {
             type="button"
             className="btn-close"
             aria-label="Close"
+            onClick={() => removeItem(index)}
           ></button>
         </li>
       ))}
