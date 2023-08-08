@@ -28,4 +28,13 @@ describe("List", () => {
     // Then
     expect(getAllByRole("listitem").length).toBe(items.length);
   });
+
+  it("should render close button for each item", () => {
+    // Given
+    const items: string[] = ["item1", "item2", "item3"];
+    const { getAllByRole } = render(<List items={items} />);
+
+    // Then
+    expect(getAllByRole("button").length).toBe(items.length);
+  });
 });
