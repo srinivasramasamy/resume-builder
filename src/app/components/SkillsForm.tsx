@@ -1,10 +1,18 @@
 import { useResume } from "../hooks/UseResume";
+import Resume from "../types/Resume";
 import List from "./List";
 
 export default function SkillsForm() {
-  const [resume] = useResume();
+  const [resume, updateStateAndLocalResume] = useResume();
 
-  const removeItem = (item: number) => {};
+  const removeItem = (index: number) => {
+    const updatedResume: Resume = {
+      ...resume,
+      skills: [...resume?.skills.filter((e, i) => i !== index)],
+    };
+
+    updateStateAndLocalResume(updatedResume);
+  };
 
   return (
     <div className="container">

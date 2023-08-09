@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Resume from "../types/Resume";
 import SkillsForm from "./SkillsForm";
 
@@ -35,5 +35,22 @@ describe("SkillsForm", () => {
     expect(getAllByRole("listitem").map((li) => li.textContent)).toEqual(
       skills
     );
+  });
+
+  it("removes skill", () => {
+    // Given
+    const skills: string[] = ["Javascript", "React", "HTML"];
+    const reactIndex: number = skills.indexOf("React");
+    jest
+      .spyOn(Storage.prototype, "getItem")
+      .mockReturnValue(JSON.stringify(new Resume({ skills: skills })));
+    const { getAllByRole, queryByText } = render(<SkillsForm />);
+    const removeReact: HTMLElement = getAllByRole("button")[reactIndex];
+
+    // When
+    fireEvent.click(removeReact);
+
+    // Then
+    expect(queryByText(skills[reactIndex])).toBeFalsy();
   });
 });
