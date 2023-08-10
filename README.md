@@ -1,5 +1,9 @@
 ## Getting Started
 
+This is a simple resume builder applciation using react, typescript, bootstrap.
+
+Preview this application in [codesandbox](https://5pmzhw-3000.csb.app/)
+
 First, run the development server:
 
 ```bash
