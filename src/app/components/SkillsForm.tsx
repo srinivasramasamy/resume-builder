@@ -17,6 +17,8 @@ export default function SkillsForm() {
   return (
     <div className="container">
       <h1>Skills</h1>
+      <input type="text" className="form-control" placeholder="Add Skill" />
+
       <List items={resume.skills} removeItem={removeItem} />
     </div>
   );

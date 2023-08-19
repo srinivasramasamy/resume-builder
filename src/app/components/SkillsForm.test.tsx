@@ -53,4 +53,12 @@ describe("SkillsForm", () => {
     // Then
     expect(queryByText(skills[reactIndex])).toBeFalsy();
   });
+
+  it("should have a add skill input", () => {
+    // Given
+    const { getAllByPlaceholderText } = render(<SkillsForm />);
+
+    // Then
+    expect(getAllByPlaceholderText("Add Skill")).toBeTruthy();
+  });
 });
