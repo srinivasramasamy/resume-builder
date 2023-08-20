@@ -61,4 +61,18 @@ describe("SkillsForm", () => {
     // Then
     expect(getAllByPlaceholderText("Add Skill")).toBeTruthy();
   });
+
+  it("should add a skill", () => {
+    // Given
+    const skill: string = "Java";
+    const { queryByText, getByPlaceholderText } = render(<SkillsForm />);
+    const skillInput: HTMLElement = getByPlaceholderText("Add Skill");
+    fireEvent.change(skillInput, { target: { value: skill } });
+
+    // When
+    fireEvent.keyDown(skillInput, { code: "Enter" });
+
+    // Then
+    expect(queryByText(skill)).toBeTruthy();
+  });
 });
