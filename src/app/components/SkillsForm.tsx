@@ -25,6 +25,7 @@ export default function SkillsForm() {
       };
 
       updateStateAndLocalResume(updatedResume);
+      setSkill("");
     }
   };
 
@@ -37,6 +38,7 @@ export default function SkillsForm() {
         placeholder="Add Skill"
         onChange={(e) => setSkill(e.target.value)}
         onKeyDown={addSkill}
+        value={skill}
       />
 
       <List items={resume.skills} removeItem={removeItem} />
