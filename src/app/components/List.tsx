@@ -5,7 +5,7 @@ interface IProps {
 
 export default function List({ items, removeItem }: IProps) {
   return (
-    <ul className="list-group col-3">
+    <ul className="list-group col-6">
       {items?.map((item, index) => (
         <li
           className="list-group-item d-flex justify-content-between align-items-center"
