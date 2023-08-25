@@ -21,7 +21,7 @@ export default function ResumeContainer() {
       {page === Page.ProfessionalSummaryForm && (
         <ProfessionalSummaryForm setPage={setPage} />
       )}
-      {page === Page.SkillsForm && <SkillsForm />}
+      {page === Page.SkillsForm && <SkillsForm setPage={setPage} />}
     </>
   );
 }
