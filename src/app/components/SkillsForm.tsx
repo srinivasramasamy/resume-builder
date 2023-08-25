@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useResume } from "../hooks/UseResume";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import List from "./List";
 
-export default function SkillsForm() {
+interface IProps {
+  setPage: (page: Page) => void;
+}
+
+export default function SkillsForm({ setPage }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
   const [skill, setSkill] = useState<string>("");
 
@@ -32,16 +37,29 @@ export default function SkillsForm() {
   return (
     <div className="container">
       <h1>Skills</h1>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Add Skill"
-        onChange={(e) => setSkill(e.target.value)}
-        onKeyDown={addSkill}
-        value={skill}
-      />
-
+      <div className="col-6">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Add Skill"
+          onChange={(e) => setSkill(e.target.value)}
+          onKeyDown={addSkill}
+          value={skill}
+        />
+      </div>
+      <br />
       <List items={resume.skills} removeItem={removeItem} />
+      <br />
+      <div className="col-6">
+        <button
+          id="back"
+          type="button"
+          className="btn btn-dark"
+          onClick={() => setPage(Page.ProfessionalSummaryForm)}
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 }

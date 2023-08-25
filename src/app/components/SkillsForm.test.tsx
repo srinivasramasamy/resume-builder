@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
+import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import SkillsForm from "./SkillsForm";
 
@@ -87,5 +88,18 @@ describe("SkillsForm", () => {
 
     // Then
     expect(skillInput.getAttribute("value")).toBe("");
+  });
+
+  it("should call set page with professional summary form", () => {
+    // Given
+    const setPage = jest.fn();
+    const { queryByText } = render(<SkillsForm setPage={setPage} />);
+    const back: Element = queryByText("Back")!;
+
+    // When
+    fireEvent.click(back);
+
+    // Then
+    expect(setPage).toBeCalledWith(Page.ProfessionalSummaryForm);
   });
 });
