@@ -24,6 +24,7 @@ export default function SkillsForm({ setPage }: IProps) {
   const addSkill = (e: React.KeyboardEvent) => {
     const enter: boolean = e.code === "Enter";
     if (enter) {
+      e.preventDefault();
       const updatedResume: Resume = {
         ...resume,
         skills: [...resume?.skills, skill],
@@ -37,29 +38,29 @@ export default function SkillsForm({ setPage }: IProps) {
   return (
     <div className="container">
       <h1>Skills</h1>
-      <div className="col-6">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Add Skill"
-          onChange={(e) => setSkill(e.target.value)}
-          onKeyDown={addSkill}
-          value={skill}
-        />
-      </div>
-      <br />
-      <List items={resume.skills} removeItem={removeItem} />
-      <br />
-      <div className="col-6">
-        <button
-          id="back"
-          type="button"
-          className="btn btn-dark"
-          onClick={() => setPage(Page.ProfessionalSummaryForm)}
-        >
-          Back
-        </button>
-      </div>
+      <form className="row g-3">
+        <div className="col-6">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Add Skill"
+            onChange={(e) => setSkill(e.target.value)}
+            onKeyDown={addSkill}
+            value={skill}
+          />
+        </div>
+        <List items={resume.skills} removeItem={removeItem} />
+        <div className="col-6">
+          <button
+            id="back"
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setPage(Page.ProfessionalSummaryForm)}
+          >
+            Back
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
