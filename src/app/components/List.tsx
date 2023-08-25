@@ -1,3 +1,5 @@
+import { Trash2 } from "react-feather";
+
 interface IProps {
   items: string[];
   removeItem: (index: number) => void;
@@ -12,12 +14,11 @@ export default function List({ items, removeItem }: IProps) {
           key={index}
         >
           {item}
-          <button
+          <Trash2
+            data-testid="remove-item"
             type="button"
-            className="btn-close"
-            aria-label="Close"
             onClick={() => removeItem(index)}
-          ></button>
+          />
         </li>
       ))}
     </ul>

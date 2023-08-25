@@ -36,22 +36,22 @@ describe("List", () => {
   it("should render close button for each item", () => {
     // Given
     const items: string[] = ["item1", "item2", "item3"];
-    const { getAllByRole } = render(
+    const { getAllByTestId } = render(
       <List items={items} removeItem={jest.fn()} />
     );
 
     // Then
-    expect(getAllByRole("button").length).toBe(items.length);
+    expect(getAllByTestId("remove-item").length).toBe(items.length);
   });
 
   it("should call remove item with item index", () => {
     // Given
     const items: string[] = ["item1", "item2", "item3"];
     const removeItem = jest.fn();
-    const { getAllByRole } = render(
+    const { getAllByTestId } = render(
       <List items={items} removeItem={removeItem} />
     );
-    const firstRemoveButton = getAllByRole("button")[0];
+    const firstRemoveButton = getAllByTestId("remove-item")[0];
 
     // When
     fireEvent.click(firstRemoveButton);
