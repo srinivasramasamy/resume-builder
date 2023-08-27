@@ -3,4 +3,5 @@ export enum Page {
   HeadingForm = "HeadingForm",
   ProfessionalSummaryForm = "ProfessionalSummaryForm",
   SkillsForm = "SkillsForm",
+  EducationForm = "EducationForm",
 }
