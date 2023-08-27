@@ -3,7 +3,7 @@ import { Page } from "../types/Page";
 import Resume from "../types/Resume";
 import SkillsForm from "./SkillsForm";
 
-describe("SkillsForm", () => {
+describe("Skills form", () => {
   beforeEach(() => {
     jest
       .spyOn(Storage.prototype, "getItem")
@@ -16,7 +16,7 @@ describe("SkillsForm", () => {
 
   it("render skills heading", () => {
     // Given
-    const { container } = render(<SkillsForm />);
+    const { container } = render(<SkillsForm setPage={jest.fn()} />);
 
     // Then
     expect(container.querySelector("h1")?.textContent).toEqual("Skills");
@@ -30,7 +30,7 @@ describe("SkillsForm", () => {
       .mockReturnValue(JSON.stringify(new Resume({ skills: skills })));
 
     // When
-    const { getAllByRole } = render(<SkillsForm />);
+    const { getAllByRole } = render(<SkillsForm setPage={jest.fn()} />);
 
     // Then
     expect(getAllByRole("listitem").map((li) => li.textContent)).toEqual(
@@ -45,8 +45,10 @@ describe("SkillsForm", () => {
     jest
       .spyOn(Storage.prototype, "getItem")
       .mockReturnValue(JSON.stringify(new Resume({ skills: skills })));
-    const { getAllByRole, queryByText } = render(<SkillsForm />);
-    const removeReact: HTMLElement = getAllByRole("button")[reactIndex];
+    const { getAllByTestId, queryByText } = render(
+      <SkillsForm setPage={jest.fn()} />
+    );
+    const removeReact: HTMLElement = getAllByTestId("remove-item")[reactIndex];
 
     // When
     fireEvent.click(removeReact);
@@ -57,7 +59,9 @@ describe("SkillsForm", () => {
 
   it("should have a add skill input", () => {
     // Given
-    const { getAllByPlaceholderText } = render(<SkillsForm />);
+    const { getAllByPlaceholderText } = render(
+      <SkillsForm setPage={jest.fn()} />
+    );
 
     // Then
     expect(getAllByPlaceholderText("Add Skill")).toBeTruthy();
@@ -66,7 +70,9 @@ describe("SkillsForm", () => {
   it("should add a skill", () => {
     // Given
     const skill: string = "Java";
-    const { queryByText, getByPlaceholderText } = render(<SkillsForm />);
+    const { queryByText, getByPlaceholderText } = render(
+      <SkillsForm setPage={jest.fn()} />
+    );
     const skillInput: HTMLElement = getByPlaceholderText("Add Skill");
     fireEvent.change(skillInput, { target: { value: skill } });
 
@@ -79,7 +85,7 @@ describe("SkillsForm", () => {
 
   it("should clear skill from input after adding", () => {
     // Given
-    const { getByPlaceholderText } = render(<SkillsForm />);
+    const { getByPlaceholderText } = render(<SkillsForm setPage={jest.fn()} />);
     const skillInput: HTMLElement = getByPlaceholderText("Add Skill");
     fireEvent.change(skillInput, { target: { value: "Java" } });
 
