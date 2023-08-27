@@ -108,4 +108,17 @@ describe("Skills form", () => {
     // Then
     expect(setPage).toBeCalledWith(Page.ProfessionalSummaryForm);
   });
+
+  it("should call set page with education form", () => {
+    // Given
+    const setPage = jest.fn();
+    const { queryByText } = render(<SkillsForm setPage={setPage} />);
+    const next: Element = queryByText("Next")!;
+
+    // When
+    fireEvent.click(next);
+
+    // Then
+    expect(setPage).toBeCalledWith(Page.EducationForm);
+  });
 });

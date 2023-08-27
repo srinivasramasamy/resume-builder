@@ -60,6 +60,16 @@ export default function SkillsForm({ setPage }: IProps) {
             Back
           </button>
         </div>
+        <div className="col-6 d-md-flex justify-content-md-end">
+          <button
+            id="next"
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setPage(Page.EducationForm)}
+          >
+            Next
+          </button>
+        </div>
       </form>
     </div>
   );
