@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Page } from "../types/Page";
 import Resume from "../types/Resume";
+import EducationForm from "./EducationForm";
 import HeadingForm from "./HeadingForm";
 import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 import SkillsForm from "./SkillsForm";
@@ -22,6 +23,7 @@ export default function ResumeContainer() {
         <ProfessionalSummaryForm setPage={setPage} />
       )}
       {page === Page.SkillsForm && <SkillsForm setPage={setPage} />}
+      {page === Page.EducationForm && <EducationForm />}
     </>
   );
 }
