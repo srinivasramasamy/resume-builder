@@ -12,7 +12,7 @@ export default function SkillsForm({ setPage }: IProps) {
   const [resume, updateStateAndLocalResume] = useResume();
   const [skill, setSkill] = useState<string>("");
 
-  const removeItem = (index: number) => {
+  const removeSkill = (index: number) => {
     const updatedResume: Resume = {
       ...resume,
       skills: [...resume?.skills.filter((e, i) => i !== index)],
@@ -49,7 +49,7 @@ export default function SkillsForm({ setPage }: IProps) {
             value={skill}
           />
         </div>
-        <List items={resume.skills} removeItem={removeItem} />
+        <List items={resume.skills} removeItem={removeSkill} />
         <div className="col-6">
           <button
             id="back"
