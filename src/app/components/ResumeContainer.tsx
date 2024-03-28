@@ -6,6 +6,7 @@ import HeadingForm from "./HeadingForm";
 import ProfessionalSummaryForm from "./ProfessionalSummaryForm";
 import SkillsForm from "./SkillsForm";
 import Welcome from "./Welcome";
+import WorkHistoryForm from "./WorkHistoryForm";
 
 export default function ResumeContainer() {
   const [page, setPage] = useState<Page>(Page.Welcome);
@@ -24,6 +25,7 @@ export default function ResumeContainer() {
       )}
       {page === Page.SkillsForm && <SkillsForm setPage={setPage} />}
       {page === Page.EducationForm && <EducationForm setPage={setPage} />}
+      {page === Page.WorkHistoryForm && <WorkHistoryForm />}
     </>
   );
 }
