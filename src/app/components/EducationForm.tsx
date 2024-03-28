@@ -140,7 +140,7 @@ function EducationForm({ setPage }: IProps) {
             id="next"
             type="button"
             className="btn btn-dark"
-            onClick={() => setPage(Page.WorkHistory)}
+            onClick={() => setPage(Page.WorkHistoryForm)}
           >
             Next
           </button>
